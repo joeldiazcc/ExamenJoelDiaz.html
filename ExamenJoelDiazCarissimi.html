@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Coding UTF8, UA-Compatible & Viewport-->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Titol de la pagina-->
+        <title> Examen Joel Felipe Díaz</title>
+    </head>  
+    <body id="background" style="background-color:white;color:black;">
+        <h1>Examen JavaScript M06 UF1 - Joel Felipe Díaz Carissimi</h1>
+        <!-- Exercici 1 -->
+        <!-- Feu un botó anomenat coloret que canviï de color el botó de blanc a vermell i viceversa cada cop que el premeu -->
+        <button onclick="coloret()" id="coloret" style="background-color:red";>--Exercici 1--</button>
+        
+        <!-- Exercici 2 --><br>
+        <!-- Feu un botó anomenat coloret2 que canviï de color de blanc a vermell i viceversa cada 2 cops que el premeu. -->
+        <button onclick="coloret2()" id="coloret2" style="background-color:red">--Exercici 2--</button>
+
+        <!-- Exercici 3 --><br>
+        <!-- Feu un botó anomenat multiplicacio que calculi de la multiplicació del número que indiqueu (amb un input)  d'1 a n  i el mostri en un div amb l'id resultatMulti -->
+        <!-- Un div -->
+        <div id="resultatMulti" > (Resultat multiplicacio)
+            <!-- Un input -->
+            <input id="multiplicacioero" type="text">
+            <!-- El butó -->
+            <button onclick="multiplicacio()" id="multiplicacio">--Exercici 3--</button>
+        </div>
+
+        <!-- Exercici 4 --><br>
+        <!-- Feu una funció anomenada mitjanaImparells que *retorni* la mitjana dels elements de les posicions imparelles d'una llista: -->
+        <div id="mitjana" > MitjanaImparells veure per consola
+            <button onclick="provaMitjana()" id="mitajanaImparells">--Exercici 4--</button>
+        </div>
+        
+        <!-- Exercici 5 --><br>
+        <!-- Feu una funció anomenada inverteix que retorni una versió invertida de la llista que l'hi passes: -->
+        <div id="lista" > invertirLlista veure per consola
+            <button onclick="provaInvertir()" id="reverseList">--Exercici 5--</button>
+        </div>
+
+        <!-- Exercici 6 --><br>
+        <!-- Fent servir el HTML de Matrius: -->
+        <table style="width: 10%;" border="1">
+            <tbody>
+                <tr> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr>
+                <tr> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr>
+                <tr> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr>
+                <tr> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr>
+                <tr> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> </tr>
+            </tbody>
+        </table>
+        <!-- erase() -->
+        <button type="button" onclick="erase()"> [Borrar]</button>
+        <!-- Creeu una funció anomenada pintaQuadrant junt amb el seu botó anomenat de la mateixa manera que pinti el quadrant inferior esquerra de vermell. -->
+        <button type="button" onclick="pintaQuadrant()"> pintaQuadrant</button>
+        
+        <!-- Exercici 7 --><br>
+        <!-- Creeu una funció anomenada pintaDiagonals junt amb el seu botó anomenat de la mateixa manera que pinti les dues diagonals de la matriu de vermell. -->
+        <button type="button" onclick="pintaDiagonal()"> pintaDiagonal</button>
+    </body>
+    <script>
+        // -- Exercici 1 --
+        const btn = document.getElementById('coloret');
+        let invcolor = 0;
+        // Colors botó 
+        const colors = ['red', 'white']
+        // intercanviar colors
+        const inverscolors = ['white', 'red'];
+
+        function coloret(){
+            // Get color boto
+            btn.style.backgroundColor = colors[invcolor];
+            // Cambiar color lletres
+            btn.style.color = 'black';
+            invcolor = invcolor >= colors.length - 1 ? 0 : invcolor + 1;
+            var element = document.getElementById("background");
+            // Get color fons
+            element.style.backgroundColor = inverscolors[invcolor];
+        }
+
+        // -- Exercici 2 --
+        const btn2 = document.getElementById('coloret');
+        let invcolor2 = 0;
+        // Colors2 botó 
+        const colors2 = ['red','red', 'white', 'white']
+        // intercanviar colors2
+        const inverscolors2 = ['white', 'white', 'red', 'red'];
+
+        function coloret2(){
+            // Get color boto
+            btn2.style.backgroundColor = colors2[invcolor2];
+            // Cambiar color lletres
+            btn2.style.color = 'black';
+            invcolor2 = invcolor2 >= colors2.length - 1 ? 0 : invcolor2 + 1;
+            var element = document.getElementById("background");
+            // Get color fons
+            element.style.backgroundColor = inverscolors2[invcolor2];
+        }
+
+        // -- Exercici 3 --
+        function multiplicacio() {
+            let multiplicar = document.getElementById("multiplicacioero").value;
+            let resultatMulti = document.getElementById("resultatMulti");
+            let resultat = 1;
+            if (multiplicacio === 0 || multiplicacio === 1)
+                return 1;
+            for (var i = multiplicacio - 1; i >= 1; i--) {
+                multiplicacio *= i;
+            }
+            return multiplicacio;
+        }
+
+        // -- Exercici 4 -- 
+        function mitjanaImparells(input){
+            let suma = 0;
+            let imparells = 0;
+            for (let i = 0; i < input.length; i++) {
+                if (i%2!=0)
+                    suma += input[i]
+                    imparells +=1;}
+            return suma/input;
+        }
+        let array = [3,5,6,4,7,1];
+        function provaMitjana(){
+            console.log(mitjanaImparells(array))
+        }
+
+        // -- Exercici 5 -- 
+        function invertir(input){
+            var result = new Array;
+            for(var i = input.length-1; i >= 0; i--) {
+            result.push(input[i]);
+            }
+            return result;
+        }
+        let llista = [1,2,3,4,5];
+        function provaInvertir(){
+            console.log(invertir(llista))
+        }
+        // -- Exercici 6 --
+        let rows = document.querySelector("tbody").children
+        let matrix = []
+        for (var i = 0; i < rows.length; i++) {
+            matrix.push(rows[i].children)
+        }
+        function erase() {
+            for (let i = 0; i < rows.length; i++) { 
+                for (let j = 0; j < 5; j++) { 
+                    matrix[i][j].style.backgroundColor = "white";
+                }
+            }
+        }
+        function pintaQuadrant(){
+            erase();
+
+            for (let i = 0; i < rows.length; i++) { 
+                for (let j = 0; j < 1; j++) { 
+                    i=rows.length-1;
+                    matrix[i][j].style.backgroundColor = "red";
+                }
+            }
+        }
+        function pintaDiagonal(){
+            erase();
+            for (var i = 0; i < rows.length; i++) {
+                for (var j = 0; j < rows.length; j++) {
+                    if(i == j){
+                        matrix[i][j].style.backgroundColor = "red";
+                    }
+                }
+            }
+            for (var i = 0; i < rows.length; i++) {
+                for (var j = 0; j < rows.length; j++) {
+                    if ((i + j) == (rows.length - 1)){
+                        matrix[i][j].style.backgroundColor = "red";
+                    }
+                }
+            }
+        }
+
+    </script>
+</html>
